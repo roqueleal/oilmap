@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html amp lang="en">
+<head>
+<meta charset="utf-8">
+    <!-- BEGIN SHAREAHOLIC CODE -->
+<link rel='preload' href='https://apps.shareaholic.com/assets/pub/shareaholic.js' as='script' />
+<script data-cfasync="false" async src="https://apps.shareaholic.com/assets/pub/shareaholic.js" data-shr-siteid="67c18c9b7cd5695a23187dd11c4214c3"></script>
+<!-- END SHAREAHOLIC CODE -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136089997-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-136089997-1');
+</script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WXJ6F8F');</script>
+        <!-- End Google Tag Manager -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="Roque Leal" />
+<meta name="copyright" content="oilmap.xyz" />
+<meta property="fb:admins" content="1573187928" />
+<meta name="keywords" content="OIL, MAP, CRUDE, PETROLEUM, OIL&GAS, INTELLIGENCE, MAPPING, MAPBOX, GAS, PIPELINE" />
+<meta property="og:image" content="http://oilmap.xyz/img/preview.jpg" link rel="image_src" type="image/jpg" href="http://oilmap.xyz/img/preview.jpg" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="300" />
+<meta property="og:title" content="Oil Map 2019" /> 
+<meta property="og:description" content="Succeed in any environment with intelligence location world data for Upstream and Downstream activities Oil and Gas" />        
+<meta property="og:url" content="http://oilmap.xyz" />     
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@oilmapxyz">
+<meta name="twitter:title" content="Oil Prices Map">
+<meta name="twitter:description" content="Succeed in any environment with intelligence location world data for Upstream and Downstream activities Oil and Gas">
+<meta name="twitter:creator" content="@oilmapxyz">
+<meta name="twitter:image" content="http://oilmap.xyz/img/preview.jpg">
+    <title>Oil Prices</title>
+    <link rel="icon" type="image/png" href="data/oilmap.png" sizes="16x16">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="assets/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+    <link href="assets/leaflet.markercluster/MarkerCluster.css" rel="stylesheet" />
+    <link href="assets/leaflet.markercluster/MarkerCluster.Default.css" rel="stylesheet" />
+
+</head>
+<body>
+     <!-- Google Tag Manager (noscript) -->
+     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXJ6F8F"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    <style>
+        
+        body {
+            margin:0;
+            padding:0;
+        }
+        header {
+            position: relative;
+            display: block;
+            top: 0;
+            left: 0;
+            right: 0;
+            text-transform: uppercase;
+            z-index:1;
+        }
+        #legend {
+            position: absolute;
+            left: 24px;
+            bottom: 120px;
+            z-index: 1;
+        }
+        #map { position:absolute; top:0; bottom:0; width:100%; z-index:-1;}
+        dl {
+            margin-left: 0;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        dt {
+            margin-left: 0;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .sidebar > div:first-child button {
+            border-radius:3px 3px 0 0;
+        }
+        .sidebar > div:last-child button {
+            border-radius:0 0 3px 3px;
+        }
+        /* Dark attribution */
+         .mapboxgl-ctrl.mapboxgl-ctrl-attrib a { color:#fff; }
+        /* modal styling */
+        .modal {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            text-align: center;
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 40px;
+            border: 1px solid #888;
+            width: 40%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .leaflet-popup-content {
+            margin: 7px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            h3 {
+              
+                font-size: 16px!important;
+                padding: 12px!important;
+                text-align: center;
+                overflow: hidden;
+                 width: 1px;
+                height: 1px;
+            }
+            .modal-content{
+                width:100%;
+            }
+            body { margin:0; padding:0; }
+        }
+            
+         #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        width: 120px;
+        font-family: 'Open Sans', sans-serif;
+        border: 1px solid #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+        #menu a {
+            font-size: 13px;
+            color: #404040;
+            display: block;
+            margin: 0;
+            text-decoration: none;
+            border-bottom: 1px solid #404040;
+            text-align: center;
+        }
+        #menu a:last-child {
+            border: none;
+            background-color: #fad201 ;
+            color: #404040;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #menu a:hover {
+            background-color: #fad201;
+            color:#404040;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #menu a.active {
+            background-color: #3887be;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #menu a.active:hover {
+            background: #3074a4;
+        }
+
+          </style>
+</head>
+    <div id="map"></div>
+
+    <script src="assets/leaflet-0.7.7/leaflet.js"></script>
+    <script src="assets/leaflet.markercluster/leaflet.markercluster.js"></script>
+    <script src="assets/tabletop.js"></script>
+ 		
+<!-- modal-->
+<div id="aboutModal" class="modal" style="display: none;">
+
+    <!-- modal content -->
+    <div class="modal-content">
+        <span class="close">×</span>
+        <p></p><h3>About the World Oil Price Map</h3><br>
+                
+This map contains large-scale data compiled thanks to webscrapping from different sources.
+        
+            For more information you can consult directly at <a href="https://www.reuters.com/subjects/oil" target="_blank">Reuters </a>.<br>It is also updated from more detailed sources Official</a>.<br>
+
+        <br>This project is part of initiative <a href="https://oilmap.xyz" target="_blank" >oilmap.xyz
+    </a> let me invite you to collaborate in updating and sharing this information, participating together we will have more updated information, you can comment and write me<a href="mailto:roqueleal@gmail.com"> roqueleal@gmail.com
+    </a>.<br>
+    </div>
+</div>
+
+ <!-- menu -->
+
+    <script>
+    
+        document.addEventListener('DOMContentLoaded', function() {
+
+            //https://docs.google.com/spreadsheets/d/12QEiwF0fxUXct_v1gWm2OCwsL7dnrxTXZkyvh3O3jrI/pubhtml  
+
+            Tabletop.init({
+                key: '1sBdyFA9e2V6gKv875NihdwAHHdHhMvbw2qEDn2OVZBI',
+                callback: function(sheet, tabletop) {
+                    for (var i in sheet) {
+                        var data = sheet[i]; //getting e row from table
+
+                        var content = '<b>Area: </b>' + data.AREA +
+                            '</br>' + '<b>Price: </b>' + data.PRICE +  '<b> $USD/Barrel</b>'  +
+                            '</br>' +'<b>Update: </b>' + data.UPDATE +
+                            '</br>';
+                        var point = L.marker([data.Y, data.X], {
+                            icon: mki,
+                            title: data.blend,
+                            riseOnHover: true
+                        }).bindPopup(content);
+                        markerClusters.addLayer(point);
+                        map.addLayer(markerClusters);
+                    }
+                },
+                simpleSheet: true
+            });
+
+             var layerMapbox = new L.tileLayer('https://api.mapbox.com/styles/v1/roqueleal/cjsw2utru068x1fqmjlolpa30/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoicm9xdWVsZWFsIiwiYSI6ImNqaHVzZTA4ODBkZjczdmt0cTNrbGo1ZWEifQ.m7xOPPWAFsY-A4cAr5nDAw', {
+                attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+            });
+           
+            var map = new L.map('map', {
+                minZoom: 2,
+                maxZoom: 18,
+                layers: [layerMapbox]
+            });
+            
+
+            var markerClusters = new L.MarkerClusterGroup({
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                disableClusteringAtZoom: 16
+            });
+
+            var mki = new L.icon({
+                iconUrl: 'data/barrel.png',
+                iconAnchor: [16, 16],
+                popupAnchor: [0, -16]
+            })
+            map.fitBounds([
+                [85, -180],
+                [-85, 180]
+            ]);
+
+            var baseMaps = {
+                "Mapbox Streets": layerMapboxStreets,
+                "Mapbox Imagery": layerMapboxImagery
+            };
+
+            L.control.layers(baseMaps, null, {
+                collapsed: false
+            }).addTo(map);
+        });
+    </script>
+ <script>
+// modal interaction
+    var modal = document.getElementById('aboutModal');
+    modal.style.display = "block";
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    var aboutHeader = document.getElementsByClassName("about-header")[0];
+    aboutHeader.onclick = function() {
+        document.body.style.cursor = "pointer";
+        modal.style.display = "block";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";      }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html amp lang="en">
+<head>
+<meta charset="utf-8">
+    <!-- BEGIN SHAREAHOLIC CODE -->
+<link rel='preload' href='https://apps.shareaholic.com/assets/pub/shareaholic.js' as='script' />
+<script data-cfasync="false" async src="https://apps.shareaholic.com/assets/pub/shareaholic.js" data-shr-siteid="67c18c9b7cd5695a23187dd11c4214c3"></script>
+<!-- END SHAREAHOLIC CODE -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136089997-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-136089997-1');
+</script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WXJ6F8F');</script>
+        <!-- End Google Tag Manager -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="Roque Leal" />
+<meta name="copyright" content="oilmap.xyz" />
+<meta property="fb:admins" content="1573187928" />
+<meta name="keywords" content="OIL, MAP, CRUDE, PETROLEUM, OIL&GAS, INTELLIGENCE, MAPPING, MAPBOX, GAS, PIPELINE" />
+<meta property="og:image" content="http://oilmap.xyz/img/preview.jpg" link rel="image_src" type="image/jpg" href="http://oilmap.xyz/img/preview.jpg" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="300" />
+<meta property="og:title" content="World Oil Map 2019" /> 
+<meta property="og:description" content="Succeed in any environment with intelligence location world data for Upstream and Downstream activities Oil and Gas" />        
+<meta property="og:url" content="http://oilmap.xyz" />     
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@oilmapxyz">
+<meta name="twitter:title" content="Oil Map">
+<meta name="twitter:description" content="Succeed in any environment with intelligence location world data for Upstream and Downstream activities Oil and Gas">
+<meta name="twitter:creator" content="@oilmapxyz">
+<meta name="twitter:image" content="http://oilmap.xyz/img/preview.jpg">
+<title>Oil Map</title>
+    <link rel="icon" type="image/png" href="./img/oilmap.png" sizes="16x16">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script src="./js/mapbox-gl.js"></script>
+    <link href="./js/mapbox-gl.css" rel="stylesheet">
+    <link href="./js/assembly.min.css" rel="stylesheet">
+    <script async="" defer="" src="./js/assembly.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <body class="prose">
+            <header class="bg-darken75 color-black h-auto-mm h6 ">
+                <div class="flex-parent flex-parent--space-between-main w-full">
+                    <div class="flex-child ml240 mt24 mb12 color-white"><h3>World Oil Map 2019</h3></div>
+                        <div class="about-header flex-child mr24 mt30 mb50 txt-bold">
+                            <svg class="icon inline mr6"><use xlink:href="#icon-question"></use></svg>About</div>
+            </header>
+            
+            <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+            <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+                       <!-- toggle style-->
+            
+            
+            <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+            <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
+            <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+  
+<style>
+   body {
+            margin:0;
+            padding:0;
+        }
+        header {
+            position: relative;
+            display: block;
+            top: 0;
+            left: 0;
+            right: 0;
+            text-transform: uppercase;
+            z-index:1;
+        }
+        #legend {
+            position: absolute;
+            left: 24px;
+            bottom: 120px;
+            z-index: 1;
+        }
+        #map { position:absolute; top:0; bottom:0; width:100%; z-index:-1;}
+        dl {
+            margin-left: 0;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        dt {
+            margin-left: 0;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .sidebar > div:first-child button {
+            border-radius:3px 3px 0 0;
+        }
+        .sidebar > div:last-child button {
+            border-radius:0 0 3px 3px;
+        }
+        /* Dark attribution */
+         .mapboxgl-ctrl.mapboxgl-ctrl-attrib a { color:#fff; }
+        /* modal styling */
+        .modal {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            text-align: center;
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 40px;
+            border: 1px solid #888;
+            width: 40%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .leaflet-popup-content {
+            margin: 7px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            h3 {
+              
+                font-size: 16px!important;
+                padding: 12px!important;
+                text-align: center;
+                overflow: hidden;
+                 width: 1px;
+                height: 1px;
+                
+            }
+            .modal-content{
+                width:100%;
+            }
+            body { margin:0; padding:0; }
+        }
+            
+         #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        width: 120px;
+        font-family: 'Open Sans', sans-serif;
+        border: 1px solid #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+        #menu a {
+            font-size: 13px;
+            color: #404040;
+            display: block;
+            margin: 0;
+            text-decoration: none;
+            border-bottom: 1px solid #404040;
+            text-align: center;
+        }
+        #menu a:last-child {
+            border: none;
+            background-color: #fad201 ;
+            color: #404040;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #menu a:hover {
+            background-color: #fad201;
+            color:#404040;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #menu a.active {
+            background-color: #3887be;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #menu a.active:hover {
+            background: #3074a4;
+        }
+</style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXJ6F8F"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+<nav id="menu"></nav>
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoicm9xdWVsZWFsIiwiYSI6ImNqaHVzZTA4ODBkZjczdmt0cTNrbGo1ZWEifQ.m7xOPPWAFsY-A4cAr5nDAw';
+var map = new mapboxgl.Map({
+    container: 'map',
+        style: 'mapbox://styles/roqueleal/cjsp9p3ho27sb1fntchkypzpw',
+        center: [-72.044,6.073],
+        zoom: 4
+    });
+mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.0/mapbox-gl-rtl-text.js');
+map.addControl(new MapboxLanguage());
+</script>
+</script>
+ 
+<!-- modal-->
+<div id="aboutModal" class="modal" style="display: none;">
+
+    <!-- modal content -->
+    <div class="modal-content">
+        <span class="close">×</span>
+        <img class="logo" src="./img/oilmap.png" style="width:50%;max-width:70px">
+        <p></p><h3>About the Oil Map 2019</h3> 
+        This Map its a web Location-Intelligence application supported and updated using Country official spatial database services and others sources related to the Oil and Gas sector. It is built to assist academic research and teaching as well as the general public. Its distributed through <a href="https://opensource.org/" target="_blank">GPL Open Source License.</a><br>
+        <br>I'm <a href="https://www.roqueleal.me" target="_blank" >Roque Leal,
+        </a> allow me to invite you to collaborate to update and share this information. Involving your data we will have more updated information. You can comment and write to me<a href="mailto:roqueleal@gmail.com"> roqueleal@gmail.com
+        </a>. You can also display and check in real time the prices of crude oil in <a href="https://oilmap.xyz/prices/oilprices.html" target="_blank">Oil Prices Map</a>.<p></p>
+        <br>Special thanks to <a href="https://www.mapbox.com/" target="_blank">Mapbox</a> for sharing inspiration and technology in the deep and dynamic visualization of our data.<p></p>
+        Visit the repository of this project available in <a href="https://github.com/roqueleal/oilmap" target="_blank">Github</a>.<p></p>
+        <img class="logo" src="./img/git.png" style="width:300%;max-width:200px">
+    </div>
+</div>
+
+ <!-- menu -->
+
+    <script>
+        // inicio NEWS
+        var url = 'https://api.gdeltproject.org/api/v2/geo/geo?zoomwheel=0&query=petroleum%20(sourcelang:zho%20OR%20sourcelang:eng%20OR%20sourcelang:rus%20OR%20sourcelang:spa)%20&mode=pointdata&format=geojson';
+        map.on('load', function () {
+        window.setInterval(function() {
+        map.getSource('NEWS').setData(url);
+        }, 2000);
+ 
+        map.addSource('NEWS', { type: 'geojson', data: url });
+        map.addLayer({
+            "id": "NEWS",
+            "type": "symbol",
+            "source": "NEWS",
+                "layout": {
+                "icon-image": "oil",
+                "icon-size":[
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0,
+                0,
+                9.256,
+                0.1
+                    ]
+                    }
+                    });
+                    });
+        // FIN NEWS
+        // inicio CLUSTERNEWS
+        
+        map.on('load', function() {
+// Add a new source from our GeoJSON data and set the
+// 'cluster' option to true. GL-JS will add the point_count property to your source data.
+        map.addSource("CLUSTER-NEWS", {
+        type: "geojson",
+// Point to GeoJSON data. This example visualizes all M1.0+ NEWS
+// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+        data: "https://api.gdeltproject.org/api/v2/geo/geo?zoomwheel=0&query=petroleum%20(sourcelang:zho%20OR%20sourcelang:eng%20OR%20sourcelang:rus%20OR%20sourcelang:spa)%20&mode=pointdata&format=geojson",
+        cluster: true,
+        clusterMaxZoom: 14, // Max zoom to cluster points on
+        clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+        });
+ 
+        map.addLayer({
+        id: "CLUSTER-NEWS",
+        type: "circle",
+        source: "CLUSTER-NEWS",
+        filter: ["has", "point_count"],
+    paint: {
+
+"circle-color": [
+"step",
+["get", "point_count"],
+"#1dcaff",
+5,
+"#fff000",
+10,
+"#ff521d"
+],
+"circle-radius": [
+"step",
+["get", "point_count"],
+20,
+10,
+30,
+750,
+40
+]
+}
+});
+ 
+map.addLayer({
+id: "cluster-count",
+type: "symbol",
+source: "CLUSTER-NEWS",
+filter: ["has", "point_count"],
+layout: {
+"text-field": "{point_count_abbreviated}",
+"text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+"text-size": 12
+}
+});
+ 
+map.addLayer({
+id: "unclustered-point",
+type: "circle",
+source: "CLUSTER-NEWS",
+filter: ["!", ["has", "point_count"]],
+paint: {
+"circle-color": "#11b4da",
+"circle-radius": 0.1,
+"circle-stroke-width": 1,
+"circle-stroke-color": "#fff"
+}
+});
+ 
+// inspect a cluster on click
+map.on('click', 'clusters', function (e) {
+var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
+var clusterId = features[0].properties.cluster_id;
+map.getSource('CLUSTER-NEWS').getClusterExpansionZoom(clusterId, function (err, zoom) {
+if (err)
+return;
+ 
+map.easeTo({
+center: features[0].geometry.coordinates,
+zoom: zoom
+});
+});
+});
+ 
+map.on('mouseenter', 'clusters', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+map.on('mouseleave', 'clusters', function () {
+map.getCanvas().style.cursor = '';
+});
+});
+        // fin CLUSTERNEWS
+        // INICIO MENU
+                 
+        var toggleableLayerIds = ['PRODUCTION', 'BID-ROUNDS','EXPLORATION','REFINERIES','OIL-PIPELINE','GAS-PIPELINE', 'NEWS', 'CLUSTER-NEWS'];
+        for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+            var link = document.createElement('a');
+            link.href = '#';
+            link.className = 'active';
+            link.textContent = id;
+            link.onclick = function (e) {
+                var clickedLayer = this.textContent;
+                e.preventDefault();
+                e.stopPropagation();
+                var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                if (visibility === 'visible') {
+                    map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                    this.className = '';
+                } else {
+                    this.className = 'active';
+                    map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+                }
+            };
+            var layers = document.getElementById('menu');
+            layers.appendChild(link);
+        }
+    // fin MENU
+        // INICIO MENU
+                 
+        var toggleableLayerIds = ['DEPOSITS'];
+        for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+           
+            var link = document.createElement('a');
+            link.href = '#';
+            link.className = 'focus';
+            link.textContent = id;
+           
+            link.onclick = function (e) {
+                var clickedLayer = this.textContent;
+                e.preventDefault();
+                e.stopPropagation();
+              
+                var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+               
+                if (visibility === 'visible') {
+                    map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                    this.className = '';
+                } else {
+                    this.className = 'active';
+                    map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+                }
+            };
+            var layers = document.getElementById('menu');
+            layers.appendChild(link);
+        }
+    // fin MENU
+    // to grab checkbox value
+    $('input.js-checkboxes').prop('checked', true);
+    var nav = new mapboxgl.NavigationControl();
+    var nav2 = new mapboxgl.FullscreenControl();
+    var nav3 = new mapboxgl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true });
+    var nav4 = new MapboxGeocoder ({ accessToken: mapboxgl.accessToken });
+    map.addControl(nav4, 'bottom-right');
+    map.addControl(nav, 'bottom-right');
+    map.addControl(nav2, 'bottom-right');
+    map.addControl(nav3, 'bottom-right');
+    function mapReset() {
+        if (window.innerWidth < 800) {
+            map.setZoom(4.17);
+        } else {
+            map.setZoom(4.17);
+        }
+    }
+  // interacion inicio hover
+  var popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+    });
+    map.on('mouseenter', 'DEPOSITS', function(e) {
+// Change the cursor style as a UI indicator.
+    map.getCanvas().style.cursor = 'pointer';
+ 
+    var coordinates = e.features[0].geometry.coordinates.slice();
+    var description = e.features[0].properties.description;
+ 
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+ 
+// Populate the popup and set its coordinates
+// based on the feature found.
+    popup.setLngLat(e.lngLat)
+                .setHTML('<dt>' + e.features[0].properties.NAME + '</dt>'+'<dt>'+ e.features[0].properties.OTHERINFO + '</dt>' + e.features[0].properties.RESINFO + '</dt>' )
+                .addTo(map);
+ 
+    map.on('mouseleave', 'DEPOSITS', function() {
+    map.getCanvas().style.cursor = '';
+    popup.remove();
+    });
+    });
+  
+  // interacion fin hover
+    // interacion inicio popup
+    map.on('mousemove', function(event) {
+        if (map.loaded()) {
+            var features = map.queryRenderedFeatures(event.point, {
+                layers: ['REFINERIES', 'EXPLORATION', 'BID-ROUNDS','PRODUCTION', 'NEWS']
+            });
+            map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+        }
+    });
+    window.addEventListener('resize', () => {
+        mapReset();
+    })
+     // interacion  refinerias
+    map.on('click', function(e) {
+        var features = map.queryRenderedFeatures(e.point, {
+            layers: ['REFINERIES'] // replace this with the name of the layer
+        });
+        if (!features.length) {
+            return;
+        }
+        var feature = features[0];
+        var popup = new mapboxgl.Popup ()
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML('<dd>' + feature.properties.Name + feature.properties.Descriptio + '</dd>')
+            .setLngLat(feature.geometry.coordinates)
+            .addTo(map);
+    });
+    window.addEventListener('resize', () => {
+        mapReset();
+    })
+    // interacion fin refinerias
+    
+    // interacion inicio bloquesar
+    map.on('click', 'EXPLORATION-AREAS', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML('<dt>' + e.features[0].properties.Name + '</dt>'+'<dt>'+ e.features[0].properties.Company + '</dt>' +'<dt>'+ e.features[0].properties.Type + '</dt>'+'<dt>')
+            .addTo(map);
+    });
+    // interacion fin bloquesar
+      // interacion inicio bloquesar
+      map.on('click', 'PRODUCTION', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML('<dt>' + e.features[0].properties.Name + '</dt>'+'<dt>'+ e.features[0].properties.Company + '</dt>' +'<dt>'+ e.features[0].properties.Type + '</dt>'+'<dt>')
+            .addTo(map);
+    });
+    // interacion fin bloquesar
+     // interacion inicio NEWS2
+     map.on('click', 'NEWS', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML('<dd>' + e.features[0].properties.name + 
+             '<img src=" '+ e.features[0].properties.shareimage + '" />' 
+            + e.features[0].properties.html + '</dd>')
+            .addTo(map);
+    });
+    // interacion fin NEWS
+    // interacion inicio BID-ROUNDS
+      map.on('click', 'BID-ROUNDS', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML('<dt>' + e.features[0].properties.title + '</dt>'+'<dt>'+ e.features[0].properties.description + '</dt>' )
+            .addTo(map);
+    });
+    // interacion fin bloquesar
+    // modal interaction
+    var modal = document.getElementById('aboutModal');
+    modal.style.display = "block";
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    var aboutHeader = document.getElementsByClassName("about-header")[0];
+    aboutHeader.onclick = function() {
+        document.body.style.cursor = "pointer";
+        modal.style.display = "block";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";      }
+    }
+</script>
+
+</body></html>
+ <!--Licensing information: https://roqueleal.me Purchase the pro version  -->
